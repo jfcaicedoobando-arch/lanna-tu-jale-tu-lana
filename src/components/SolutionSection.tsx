@@ -19,7 +19,7 @@ const steps = [
         <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
       </svg>
     ),
-    title: 'Valentina te escribe',
+    title: 'Lupita te escribe',
     desc: 'Por WhatsApp, donde ya estás',
   },
   {
@@ -74,7 +74,7 @@ const SolutionSection = () => {
           }}
         >
           <h2 className="font-heading text-4xl md:text-6xl text-foreground mb-4">
-            Conoce a Valentina<span className="text-primary">.</span>
+            Conoce a Lupita<span className="text-primary">.</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto font-body">
             Tu comadre en LANNA. Te escribe cuando tu jale está listo y te deposita en minutos.

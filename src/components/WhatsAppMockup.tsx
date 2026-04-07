@@ -1,20 +1,20 @@
 import { useEffect, useState, useRef } from 'react';
 
 interface Message {
-  sender: 'valentina' | 'transportista';
+  sender: 'lupita' | 'transportista';
   text: string;
   delay: number;
 }
 
 const messages: Message[] = [
-  { sender: 'valentina', text: '¡Hola! Soy Valentina, tu compañera de viaje en LANNA 👋', delay: 0 },
-  { sender: 'valentina', text: 'Aquí ayudamos a que no te quedes sin lana mientras esperas que te paguen tus fletes. Te adelantamos tu pago para que sigas rodando 🚛', delay: 1200 },
+  { sender: 'lupita', text: '¡Hola! Soy Lupita, tu compañera de viaje en LANNA 👋', delay: 0 },
+  { sender: 'lupita', text: 'Aquí ayudamos a que no te quedes sin lana mientras esperas que te paguen tus fletes. Te adelantamos tu pago para que sigas rodando 🚛', delay: 1200 },
   { sender: 'transportista', text: 'Y eso como funciona?', delay: 2000 },
-  { sender: 'valentina', text: 'Bien fácil: tú me pasas tu factura, yo te consigo el adelanto en chinga, y cuando te paguen, nos liquidas. Sin vueltas 💪', delay: 1500 },
-  { sender: 'valentina', text: '¡Quihúbole! Tu flete de $80,000 con Transportes del Norte ya está confirmado ✅', delay: 2000 },
-  { sender: 'valentina', text: '¿Quieres recibir $75,200 ahorita mismo?', delay: 1000 },
+  { sender: 'lupita', text: 'Bien fácil: tú me pasas tu factura, yo te consigo el adelanto en chinga, y cuando te paguen, nos liquidas. Sin vueltas 💪', delay: 1500 },
+  { sender: 'lupita', text: '¡Quihúbole! Tu flete de $80,000 con Transportes del Norte ya está confirmado ✅', delay: 2000 },
+  { sender: 'lupita', text: '¿Quieres recibir $75,200 ahorita mismo?', delay: 1000 },
   { sender: 'transportista', text: 'SÍ', delay: 800 },
-  { sender: 'valentina', text: '¡Listo! $75,200 ya van a tu cuenta. Gracias por jalar con nosotros 🤝', delay: 1500 },
+  { sender: 'lupita', text: '¡Listo! $75,200 ya van a tu cuenta. Gracias por jalar con nosotros 🤝', delay: 1500 },
 ];
 
 const WhatsAppMockup = () => {
@@ -47,8 +47,8 @@ const WhatsAppMockup = () => {
     messages.forEach((msg, index) => {
       totalDelay += msg.delay;
 
-      // Show typing before each Valentina message
-      if (msg.sender === 'valentina') {
+      // Show typing before each Lupita message
+      if (msg.sender === 'lupita') {
         setTimeout(() => setIsTyping(true), totalDelay - 800);
       }
 
@@ -79,7 +79,7 @@ const WhatsAppMockup = () => {
             V
           </div>
           <div className="flex-1">
-            <p className="text-white text-sm font-semibold">Valentina · LANNA</p>
+            <p className="text-white text-sm font-semibold">Lupita · LANNA</p>
             <p className="text-white/60 text-xs">en línea</p>
           </div>
           <div className="flex gap-4 text-white/70">
@@ -102,27 +102,27 @@ const WhatsAppMockup = () => {
           {messages.map((msg, index) => {
             if (!visibleMessages.includes(index)) return null;
 
-            const isValentina = msg.sender === 'valentina';
+            const isLupita = msg.sender === 'lupita';
 
             return (
               <div
                 key={index}
-                className={`flex ${isValentina ? 'justify-start' : 'justify-end'} animate-fade-in`}
+                className={`flex ${isLupita ? 'justify-start' : 'justify-end'} animate-fade-in`}
               >
                 <div
                   className={`max-w-[85%] px-3 py-2 rounded-lg text-sm relative ${
-                    isValentina
+                    isLupita
                       ? 'bg-[#1D2831] text-[#E9EDEF]'
                       : 'bg-[#005C4B] text-[#E9EDEF]'
                   }`}
                 >
-                  {isValentina && index === visibleMessages.filter((_, i) => messages[i]?.sender === 'valentina')[0] && (
-                    <p className="text-[#25D366] text-xs font-semibold mb-1">Valentina · LANNA</p>
+                  {isLupita && index === visibleMessages.filter((_, i) => messages[i]?.sender === 'lupita')[0] && (
+                    <p className="text-[#25D366] text-xs font-semibold mb-1">Lupita · LANNA</p>
                   )}
                   <p className="leading-relaxed">{msg.text}</p>
-                  <p className={`text-[10px] mt-1 text-right ${isValentina ? 'text-[#8696A0]' : 'text-[#7DB8A5]'}`}>
+                  <p className={`text-[10px] mt-1 text-right ${isLupita ? 'text-[#8696A0]' : 'text-[#7DB8A5]'}`}>
                     {getTime(index)}
-                    {!isValentina && (
+                    {!isLupita && (
                       <span className="ml-1">✓✓</span>
                     )}
                   </p>
