@@ -2,10 +2,6 @@ import { useScrollAnimation, useStaggeredAnimation } from '@/hooks/useScrollAnim
 
 const pillars = [
   {
-    title: 'Seguro de crédito comercial',
-    desc: 'Cada operación tiene respaldo de una aseguradora. Si algo sale mal, el capital está cubierto.',
-  },
-  {
     title: 'El deudor es la empresa grande',
     desc: 'Quien debe no es el transportista — es la empresa contratante, evaluada crediticiamente antes de operar.',
   },
@@ -57,7 +53,7 @@ const InvestorsSection = () => {
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-body leading-relaxed">
             Cada flete completado genera una cuenta por cobrar confirmada con factura CFDI y cumplido firmado.
             LANNA adelanta el pago al transportista y cobra a la empresa contratante en su ciclo normal.
-            Es un flujo de caja real, respaldado y asegurado. No es venture ni especulación — es capital trabajando sobre cuentas por cobrar reales, con flujo de caja desde la primera operación.
+            Es un flujo de caja real, respaldado por cuentas por cobrar confirmadas. No es venture ni especulación — es capital trabajando sobre operaciones reales, con flujo de caja desde la primera operación.
           </p>
         </div>
 
