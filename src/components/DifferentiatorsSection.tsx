@@ -54,16 +54,6 @@ const differentiators = [
     title: 'Buen historial = mejores condiciones',
     desc: 'LANNA premia al que cumple. Mejores tasas y mayor línea conforme jalas con nosotros.',
   },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="M9 12l2 2 4-4" />
-      </svg>
-    ),
-    title: 'Cada operación protegida',
-    desc: 'Seguro de crédito comercial en cada flete. Tu lana no anda en el aire.',
-  },
 ];
 
 const DifferentiatorsSection = () => {
