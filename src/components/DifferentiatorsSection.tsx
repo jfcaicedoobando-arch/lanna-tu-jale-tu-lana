@@ -29,7 +29,7 @@ const differentiators = [
         <path d="M14.05 6A5 5 0 0118 10" />
       </svg>
     ),
-    title: 'Valentina te busca a ti',
+    title: 'Lupita te busca a ti',
     desc: 'Ella te escribe cuando tu flete está listo. No tienes que perseguir a nadie por tu pago.',
   },
   {
@@ -43,7 +43,7 @@ const differentiators = [
       </svg>
     ),
     title: 'Registro por WhatsApp',
-    desc: 'Mandas unas fotos (INE, RFC, una factura) y Valentina te guía paso a paso.',
+    desc: 'Mandas unas fotos (INE, RFC, una factura) y Lupita te guía paso a paso.',
   },
   {
     icon: (
