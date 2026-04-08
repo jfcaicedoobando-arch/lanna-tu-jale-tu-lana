@@ -1,39 +1,6 @@
 import { useState } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
-const products = [
-  {
-    id: 'factoring',
-    tag: 'El más común',
-    title: 'Anticipo de Factura',
-    subtitle: 'Tienes la factura y la empresa te debe',
-    desc: 'Entregaste el flete, tienes tu factura CFDI y cumplido firmado. Nosotros te pagamos al instante y cobramos a la empresa cuando les toca pagarte a ti.',
-    flow: [
-      'Terminas el flete y tienes tu factura CFDI',
-      'Nos mandas la factura por WhatsApp',
-      'Confirmamos con la empresa que te debe',
-      'Te depositamos vía SPEI en 2-5 minutos',
-      'Cuando la empresa paga, cerramos la operación',
-    ],
-    highlight: 'La empresa pagadora es quien responde — no tú.',
-  },
-  {
-    id: 'directo',
-    tag: 'Sin factura formal',
-    title: 'Financiamiento Directo',
-    subtitle: 'Hiciste el flete pero aún no tienes factura',
-    desc: 'No tienes factura todavía o el trato fue de palabra. Nos cuentas los datos del flete y te adelantamos igual. La tasa es un poco mayor porque el riesgo es distinto.',
-    flow: [
-      'Terminas el flete aunque sea sin factura',
-      'Nos mandas los datos: quién te debe, cuánto y cuándo',
-      'Evaluamos la operación contigo',
-      'Si aprobamos, te depositamos',
-      'Tú respondes por el pago si la empresa no nos liquida',
-    ],
-    highlight: 'Bueno para fletes de confianza o cuando el papeleo se demora.',
-  },
-];
-
 const clientTypes = {
   individual: {
     label: 'Hombre camión',
@@ -63,12 +30,6 @@ const clientTypes = {
   },
 };
 
-const CheckIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M20 6L9 17l-5-5" />
-  </svg>
-);
-
 const DocIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
@@ -77,20 +38,16 @@ const DocIcon = () => (
 );
 
 const RequirementsSection = () => {
-  const [activeProduct, setActiveProduct] = useState<'factoring' | 'directo'>('factoring');
   const [activeClient, setActiveClient] = useState<'individual' | 'company'>('individual');
 
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
-  const { ref: productsRef, isVisible: productsVisible } = useScrollAnimation(0.1);
   const { ref: docsRef, isVisible: docsVisible } = useScrollAnimation(0.1);
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
 
-  const product = products.find(p => p.id === activeProduct)!;
   const client = clientTypes[activeClient];
 
   return (
     <section id="requisitos" className="relative py-24 md:py-32 px-6 overflow-hidden">
-      {/* Background */}
       <div
         className="absolute inset-0"
         style={{
@@ -109,71 +66,11 @@ const RequirementsSection = () => {
           }}
         >
           <h2 className="font-heading text-4xl md:text-6xl text-foreground mb-4">
-            Dos productos. Un WhatsApp<span className="text-accent">.</span>
+            ¿Qué necesitas para aplicar<span className="text-accent">?</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto font-body">
-            Según cómo venga tu flete, tenemos la solución.
+            Todo por WhatsApp. Foto o PDF. Sin oficinas, sin filas.
           </p>
-        </div>
-
-        {/* Products */}
-        <div
-          ref={productsRef}
-          className="mb-20 transition-all duration-700"
-          style={{
-            opacity: productsVisible ? 1 : 0,
-            transform: productsVisible ? 'translateY(0)' : 'translateY(30px)',
-          }}
-        >
-          <div className="flex gap-3 mb-8 overflow-x-auto pb-2">
-            {products.map(p => (
-              <button
-                key={p.id}
-                onClick={() => setActiveProduct(p.id as 'factoring' | 'directo')}
-                className={`flex-1 min-w-[180px] text-left p-5 rounded-2xl border transition-all duration-300 ${
-                  activeProduct === p.id
-                    ? p.id === 'factoring'
-                      ? 'bg-primary/10 border-primary/50'
-                      : 'bg-accent/10 border-accent/50'
-                    : 'bg-surface/30 border-border/20 hover:border-border/50'
-                }`}
-              >
-                <span className={`text-xs font-semibold uppercase tracking-wider ${
-                  activeProduct === p.id
-                    ? p.id === 'factoring' ? 'text-primary' : 'text-accent'
-                    : 'text-muted-foreground'
-                }`}>
-                  {p.tag}
-                </span>
-                <p className="font-heading text-lg text-foreground mt-1">
-                  {p.title}
-                </p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {p.subtitle}
-                </p>
-              </button>
-            ))}
-          </div>
-
-          <div className="bg-surface/40 border border-border/20 rounded-2xl p-6 md:p-8">
-            <p className="text-muted-foreground font-body mb-6 text-base md:text-lg">
-              {product.desc}
-            </p>
-            <div className="space-y-3 mb-6">
-              {product.flow.map((step, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-7 h-7 rounded-full bg-primary/15 text-primary text-sm font-bold flex items-center justify-center mt-0.5">
-                    {i + 1}
-                  </span>
-                  <p className="text-foreground font-body">{step}</p>
-                </div>
-              ))}
-            </div>
-            <div className="flex items-start gap-2 text-accent text-sm font-medium border-t border-border/20 pt-4">
-              <CheckIcon />
-              {product.highlight}
-            </div>
-          </div>
         </div>
 
         {/* Documents */}
@@ -185,13 +82,6 @@ const RequirementsSection = () => {
             transform: docsVisible ? 'translateY(0)' : 'translateY(30px)',
           }}
         >
-          <h3 className="font-heading text-2xl md:text-4xl text-foreground text-center mb-2">
-            ¿Qué necesitas para aplicar?
-          </h3>
-          <p className="text-muted-foreground text-center mb-8 font-body">
-            Todo por WhatsApp. Foto o PDF. Sin oficinas, sin filas.
-          </p>
-
           <div className="flex gap-3 mb-8">
             {([
               { key: 'individual' as const, label: 'Hombre camión', sub: 'Troca propia' },
