@@ -29,7 +29,7 @@ const TrustSection = () => {
   const { ref, isVisible } = useScrollAnimation(0.1);
 
   return (
-    <section className="py-24 md:py-32 px-6 relative overflow-hidden">
+    <section id="preguntas" className="py-24 md:py-32 px-6 relative overflow-hidden scroll-mt-[70px]">
       <div
         className="absolute inset-0"
         style={{

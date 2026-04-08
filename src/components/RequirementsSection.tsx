@@ -47,7 +47,7 @@ const RequirementsSection = () => {
   const client = clientTypes[activeClient];
 
   return (
-    <section id="requisitos" className="relative py-24 md:py-32 px-6 overflow-hidden">
+    <section id="requisitos" className="relative py-24 md:py-32 px-6 overflow-hidden scroll-mt-[70px]">
       <div
         className="absolute inset-0"
         style={{

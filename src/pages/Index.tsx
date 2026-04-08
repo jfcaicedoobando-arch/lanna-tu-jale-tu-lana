@@ -1,3 +1,4 @@
+import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ProblemSolutionSection from '@/components/ProblemSolutionSection';
 import ProductsSection from '@/components/ProductsSection';
@@ -13,6 +14,7 @@ const Divider = () => (
 const Index = () => {
   return (
     <main className="bg-background min-h-screen">
+      <Navbar />
       <HeroSection />
       <Divider />
       <ProblemSolutionSection />
