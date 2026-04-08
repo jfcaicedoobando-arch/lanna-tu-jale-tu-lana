@@ -8,8 +8,8 @@ const differentiators = [
         <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
       </svg>
     ),
-    title: 'WhatsApp + SPEI',
-    desc: 'Donde ya estás, como ya cobras. Sin descargar apps, sin crear cuentas, sin portales web.',
+    title: 'Todo por WhatsApp',
+    desc: 'Donde ya estás. Sin descargar apps, sin crear cuentas, sin portales web.',
   },
   {
     icon: (
@@ -24,13 +24,22 @@ const differentiators = [
   {
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+      </svg>
+    ),
+    title: 'Antes o después del flete',
+    desc: 'La competencia solo te ayuda con factura. LANNA también te da flujo ANTES de salir a carretera.',
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary">
         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
         <path d="M14.05 2a9 9 0 018 7.94" />
         <path d="M14.05 6A5 5 0 0118 10" />
       </svg>
     ),
     title: 'Lupita te busca a ti',
-    desc: 'Ella te escribe cuando tu flete está listo. No tienes que perseguir a nadie por tu pago.',
+    desc: 'Ella te escribe cuando tu jale está listo. No tienes que perseguir a nadie.',
   },
   {
     icon: (
@@ -39,20 +48,19 @@ const differentiators = [
         <line x1="16" y1="2" x2="16" y2="6" />
         <line x1="8" y1="2" x2="8" y2="6" />
         <line x1="3" y1="10" x2="21" y2="10" />
-        <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
       </svg>
     ),
-    title: 'Registro por WhatsApp',
-    desc: 'Mandas unas fotos (INE, RFC, una factura) y Lupita te guía paso a paso.',
+    title: 'Sin papeleo, sin oficinas',
+    desc: 'Mandas unas fotos por WhatsApp y listo. Lupita te guía paso a paso.',
   },
   {
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary">
-        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
       </svg>
     ),
-    title: 'Buen historial = mejores condiciones',
-    desc: 'LANNA premia al que cumple. Mejores tasas y mayor línea conforme jalas con nosotros.',
+    title: 'Buen historial = mejor trato',
+    desc: 'Cumples, te premiamos. Mejores tasas y mayor línea conforme jalas con nosotros.',
   },
 ];
 
@@ -63,10 +71,10 @@ const DifferentiatorsSection = () => {
     <section className="py-24 md:py-32 px-6 bg-background">
       <div className="container max-w-5xl">
         <h2 className="font-heading text-3xl md:text-5xl text-foreground text-center mb-4">
-          Pa' los que jalan<span className="text-accent">.</span>
+          No somos banco. No somos factoraje<span className="text-accent">.</span>
         </h2>
         <p className="text-muted-foreground text-center text-lg mb-16 max-w-xl mx-auto font-body">
-          Lo que te damos vs. lo que existe
+          Somos tu respaldo cuando te falta flujo para operar.
         </p>
 
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
