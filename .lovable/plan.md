@@ -1,90 +1,42 @@
 
 
-# Reorganización: Landing en 5 Bloques
+# Navbar Sticky con Anchor Navigation
 
 ## Resumen
+Crear un componente `Navbar.tsx` sticky con logo, 3 anchor links, CTA de WhatsApp, menú hamburguesa en móvil, y detección de sección activa via Intersection Observer.
 
-Consolidar las 12 secciones actuales en 5 bloques con jerarquía clara, elementos interactivos, y líneas divisorias. Eliminar NumbersSection, ObjectionsSection, DifferentiatorsSection, TestimonialsSection, e InvestorsSection como componentes independientes — su contenido relevante se absorbe en los FAQ o se descarta.
+## Cambios
 
-## Estructura Final
+### 1. Crear `src/components/Navbar.tsx`
+- Logo "LANNA" a la izquierda (scroll to top al click)
+- 3 links centrados: Productos (#productos), Requisitos (#requisitos), Preguntas (#preguntas)
+- CTA "💬 Escribir a Lupita" a la derecha (pill verde, enlace WhatsApp)
+- `useState` para `scrolled` (fondo blur cuando scroll > 20px) y `activeSection`
+- `useState` para `mobileMenuOpen` — hamburguesa que muestra links en dropdown vertical
+- `useEffect` con `IntersectionObserver` (threshold 0.3) observando las 3 secciones para actualizar `activeSection`
+- Links inactivos: `text-muted-foreground`, activos: `text-primary`
+- Fondo: transparente arriba, `bg-background/90 backdrop-blur-md` al scrollear
+- Altura ~60px, `fixed top-0 w-full z-50`
+- En móvil: ocultar links desktop, mostrar hamburguesa + CTA siempre visible
+- Click en link móvil cierra el menú
 
-```text
-BLOQUE 1: HeroSection (sin cambios)
-─────────── línea divisoria ───────────
-BLOQUE 2: ProblemSolutionSection (NUEVO — fusiona Problem + Solution)
-─────────── línea divisoria ───────────
-BLOQUE 3: ProductsSection (refactor — botones grandes + card interactiva)
-─────────── línea divisoria ───────────
-BLOQUE 4: TrustSection (NUEVO — FAQ en acordeón)
-─────────── línea divisoria ───────────
-BLOQUE 5: RequirementsCTASection (refactor Requirements)
-```
+### 2. Agregar `id="preguntas"` a `TrustSection.tsx`
+- La sección de FAQ necesita el anchor id (productos y requisitos ya lo tienen)
 
-## Cambios por archivo
+### 3. Agregar `scroll-margin-top` a las 3 secciones
+- En `ProductsSection`, `TrustSection`, `RequirementsSection`: añadir clase `scroll-mt-[70px]` al `<section>`
 
-### 1. Nuevo: `src/components/ProblemSolutionSection.tsx`
-Fusiona ProblemSection + SolutionSection en un solo bloque continuo:
-- Etiqueta verde "💡 El problema" arriba
-- Título: "El diésel no espera 30 días."
-- Texto breve del problema (condensar las 3 sub-secciones actuales en ~4 líneas)
-- Luego etiqueta "✨ La solución"
-- "Conoce a Lupita" + subtítulo
-- 4 pasos genéricos en fila horizontal (💬 Le escribes, 🤝 Te guía, ✅ Te aprueba, 💵 Tu lana llega)
-- Mantener WhatsApp mockup debajo de los pasos
-- Eliminar el closer "Así. Sin apps..."
+### 4. Actualizar `Index.tsx`
+- Importar y renderizar `<Navbar />` antes de `<HeroSection />`
 
-### 2. Refactor: `src/components/ProductsSection.tsx`
-- Etiqueta verde "📦 Tu situación"
-- DOS BOTONES GRANDES lado a lado (no las cards actuales):
-  - "Ya tengo mi factura" → Anticipo de Factura
-  - "Voy a hacer el flete" → Crédito Rotativo
-- Al tocar, aparece abajo una card con: nombre del producto, comisión, quién responde, velocidad
-- Simplificar eliminando el flow de pasos (ya está en Bloque 2)
-- Absorber el contenido de NumbersSection (ejemplo de $50,000) dentro de la card de Anticipo
+### 5. Agregar `scroll-behavior: smooth` en `index.css`
+- `html { scroll-behavior: smooth; }`
 
-### 3. Nuevo: `src/components/TrustSection.tsx`
-- Etiqueta verde "🤝 Preguntas frecuentes"
-- Acordeón con solo-una-abierta-a-la-vez (reusar lógica actual de FAQSection)
-- Preguntas (fusionar FAQ + Objections):
-  1. ¿Y si la empresa no me paga?
-  2. ¿Cuánto cobran de comisión?
-  3. ¿Reportan a Buró de Crédito?
-  4. ¿En cuánto tiempo me depositan?
-  5. ¿Necesito bajar una app?
-
-### 4. Refactor: `src/components/RequirementsSection.tsx`
-- Etiqueta verde "📄 Requisitos"
-- Tabs: "Hombre camión" | "Empresa" (mantener como está)
-- Lista de documentos (mantener)
-- CTA final grande: "Escribirle a Lupita" (mantener)
-
-### 5. `src/pages/Index.tsx`
-- Reducir a 5 imports + Footer + FloatingWhatsApp:
-  ```
-  HeroSection
-  ProblemSolutionSection
-  ProductsSection
-  TrustSection
-  RequirementsSection
-  FooterSection
-  FloatingWhatsApp
-  ```
-
-### 6. Líneas divisorias
-Cada bloque termina con un `<div>` de 1px con gradiente sutil (`from-transparent via-border/30 to-transparent`).
-
-### 7. Etiquetas de bloque
-Componente inline: `<span className="text-xs uppercase tracking-widest text-primary font-semibold">` con emoji + texto, centrado arriba de cada título.
-
-### Archivos a eliminar (dejar de importar)
-- NumbersSection.tsx
-- ObjectionsSection.tsx
-- DifferentiatorsSection.tsx
-- TestimonialsSection.tsx
-- InvestorsSection.tsx
-- ProblemSection.tsx
-- SolutionSection.tsx
-- FAQSection.tsx
-
-Los archivos físicos se dejan pero ya no se importan.
+## Archivos tocados
+1. **Nuevo**: `src/components/Navbar.tsx`
+2. **Editar**: `src/components/TrustSection.tsx` — agregar `id="preguntas"` y `scroll-mt-[70px]`
+3. **Editar**: `src/components/ProductsSection.tsx` — agregar `scroll-mt-[70px]`
+4. **Editar**: `src/components/RequirementsSection.tsx` — agregar `scroll-mt-[70px]`
+5. **Editar**: `src/pages/Index.tsx` — importar Navbar
+6. **Editar**: `src/index.css` — `scroll-behavior: smooth`
 
