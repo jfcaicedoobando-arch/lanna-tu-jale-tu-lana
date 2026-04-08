@@ -65,6 +65,9 @@ const RequirementsSection = () => {
             transform: titleVisible ? 'translateY(0)' : 'translateY(30px)',
           }}
         >
+          <span className="text-xs uppercase tracking-widest text-primary font-semibold mb-6 block">
+            📄 Requisitos
+          </span>
           <h2 className="font-heading text-4xl md:text-6xl text-foreground mb-4">
             ¿Qué necesitas para aplicar<span className="text-accent">?</span>
           </h2>

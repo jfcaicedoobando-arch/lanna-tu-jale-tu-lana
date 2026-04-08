@@ -1,31 +1,27 @@
 import HeroSection from '@/components/HeroSection';
-import ProblemSection from '@/components/ProblemSection';
-import SolutionSection from '@/components/SolutionSection';
+import ProblemSolutionSection from '@/components/ProblemSolutionSection';
 import ProductsSection from '@/components/ProductsSection';
-import NumbersSection from '@/components/NumbersSection';
-import ObjectionsSection from '@/components/ObjectionsSection';
-import DifferentiatorsSection from '@/components/DifferentiatorsSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
+import TrustSection from '@/components/TrustSection';
 import RequirementsSection from '@/components/RequirementsSection';
-import FAQSection from '@/components/FAQSection';
-import InvestorsSection from '@/components/InvestorsSection';
 import FooterSection from '@/components/FooterSection';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+
+const Divider = () => (
+  <div className="h-px w-full bg-gradient-to-r from-transparent via-border/30 to-transparent" />
+);
 
 const Index = () => {
   return (
     <main className="bg-background min-h-screen">
       <HeroSection />
-      <ProblemSection />
-      <SolutionSection />
+      <Divider />
+      <ProblemSolutionSection />
+      <Divider />
       <ProductsSection />
-      <NumbersSection />
-      <ObjectionsSection />
-      <DifferentiatorsSection />
-      <TestimonialsSection />
+      <Divider />
+      <TrustSection />
+      <Divider />
       <RequirementsSection />
-      <FAQSection />
-      <InvestorsSection />
       <FooterSection />
       <FloatingWhatsApp />
     </main>
