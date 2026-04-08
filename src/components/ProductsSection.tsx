@@ -4,37 +4,31 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 const products = [
   {
     id: 'anticipo',
-    situation: 'Ya hice el flete y tengo mi factura',
+    situation: 'Ya tengo mi factura',
     title: 'Anticipo de Factura',
     who: 'Empresas de transporte y hombres camión',
     risk: 'Bajo — la empresa grande responde, no tú',
     rate: '3% - 5%',
     speed: 'SPEI en 2-5 minutos',
-    color: 'primary',
-    flow: [
-      'Terminas el flete — tienes factura y cumplido',
-      'Le mandas la factura a Lupita por WhatsApp',
-      'LANNA confirma con la empresa que te deben',
-      'Te depositan vía SPEI en minutos',
-      'La empresa paga a LANNA — tú ya tienes tu dinero',
-    ],
+    color: 'primary' as const,
+    example: {
+      factura: '$50,000',
+      comision: '– $2,500',
+      comisionLabel: 'Comisión (5%)',
+      recibes: '$47,500',
+      nota: 'En vez de esperar 30-60 días, recibes $47,500 hoy.',
+    },
   },
   {
     id: 'credito',
-    situation: 'Tengo un flete pero no tengo para salir',
+    situation: 'Voy a hacer el flete',
     title: 'Crédito Rotativo',
     who: 'Empresas pequeñas y hombres camión',
     risk: 'Mayor — tú respondes por el pago',
     rate: '5% - 8%',
     speed: 'Línea rotativa — usas, pagas, vuelves a usar',
-    color: 'accent',
-    flow: [
-      'Tienes un flete pero no tienes para diésel y casetas',
-      'Le escribes a Lupita y le cuentas el flete',
-      'LANNA evalúa y te aprueba una línea',
-      'Te depositan para que puedas salir a carretera',
-      'Cuando te paguen el flete, liquidas y vuelves a usar',
-    ],
+    color: 'accent' as const,
+    example: null,
   },
 ];
 
@@ -65,6 +59,9 @@ const ProductsSection = () => {
             transform: titleVisible ? 'translateY(0)' : 'translateY(30px)',
           }}
         >
+          <span className="text-xs uppercase tracking-widest text-primary font-semibold mb-6 block">
+            📦 Tu situación
+          </span>
           <h2 className="font-heading text-3xl md:text-5xl text-foreground mb-4">
             ¿Cuándo necesitas la lana<span className="text-accent">?</span>
           </h2>
@@ -73,7 +70,7 @@ const ProductsSection = () => {
           </p>
         </div>
 
-        {/* Situation selector */}
+        {/* Situation selector — big buttons */}
         <div
           ref={contentRef}
           className="transition-all duration-700"
@@ -87,7 +84,7 @@ const ProductsSection = () => {
               <button
                 key={p.id}
                 onClick={() => setActive(i)}
-                className={`text-left p-5 rounded-2xl border transition-all duration-300 ${
+                className={`text-left p-6 rounded-2xl border transition-all duration-300 ${
                   active === i
                     ? p.color === 'primary'
                       ? 'bg-primary/10 border-primary/50 ring-1 ring-primary/20'
@@ -102,16 +99,16 @@ const ProductsSection = () => {
                 }`}>
                   Tu situación
                 </p>
-                <p className="font-heading text-base md:text-lg text-foreground leading-snug">
+                <p className="font-heading text-lg md:text-xl text-foreground leading-snug">
                   "{p.situation}"
                 </p>
               </button>
             ))}
           </div>
 
-          {/* Product detail */}
+          {/* Product detail card */}
           <div className="bg-surface/40 border border-border/20 rounded-2xl p-6 md:p-8">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-6">
               <span className={`text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full ${
                 isPrimary ? 'bg-primary/15 text-primary' : 'bg-accent/15 text-accent'
               }`}>
@@ -120,7 +117,7 @@ const ProductsSection = () => {
             </div>
 
             {/* Key facts */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 pb-6 border-b border-border/20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               <div>
                 <p className="text-xs text-muted-foreground mb-1">Para quién</p>
                 <p className="text-sm text-foreground font-medium">{product.who}</p>
@@ -139,32 +136,44 @@ const ProductsSection = () => {
               </div>
             </div>
 
-            {/* Flow */}
-            <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4 font-semibold">
-              Cómo funciona
-            </p>
-            <div className="space-y-3 mb-6">
-              {product.flow.map((step, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span className={`flex-shrink-0 w-7 h-7 rounded-full text-sm font-bold flex items-center justify-center mt-0.5 ${
-                    isPrimary ? 'bg-primary/15 text-primary' : 'bg-accent/15 text-accent'
-                  }`}>
-                    {i + 1}
-                  </span>
-                  <p className="text-foreground/90 font-body text-sm md:text-base">{step}</p>
+            {/* Anticipo example (absorbed from NumbersSection) */}
+            {product.example && (
+              <div className="border-t border-border/20 pt-6">
+                <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4 font-semibold">
+                  Ejemplo real
+                </p>
+                <div className="bg-background/50 rounded-xl p-5 max-w-sm">
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-muted-foreground font-body text-sm">Tu factura</span>
+                      <span className="font-heading text-xl text-foreground">{product.example.factura}</span>
+                    </div>
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-muted-foreground font-body text-sm">{product.example.comisionLabel}</span>
+                      <span className="font-heading text-base text-accent">{product.example.comision}</span>
+                    </div>
+                    <div className="h-px bg-border/30" />
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-foreground font-body font-semibold text-sm">Recibes hoy</span>
+                      <span className="font-heading text-2xl text-primary">{product.example.recibes}</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground/60 mt-3">{product.example.nota}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
 
-            {/* Differentiator callout */}
+            {/* Crédito callout */}
             {product.id === 'credito' && (
-              <div className="p-4 rounded-xl bg-accent/5 border border-accent/20">
-                <p className="text-sm text-accent font-semibold mb-1">
-                  Este es el diferenciador real
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Cuando nadie te presta — ni familia, ni banco, ni gota a gota — LANNA sí puede.
-                </p>
+              <div className="border-t border-border/20 pt-6">
+                <div className="p-4 rounded-xl bg-accent/5 border border-accent/20">
+                  <p className="text-sm text-accent font-semibold mb-1">
+                    Este es el diferenciador real
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Cuando nadie te presta — ni familia, ni banco, ni gota a gota — LANNA sí puede.
+                  </p>
+                </div>
               </div>
             )}
           </div>
