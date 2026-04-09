@@ -42,7 +42,7 @@ const RequirementsSection = () => {
 
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
   const { ref: docsRef, isVisible: docsVisible } = useScrollAnimation(0.1);
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
+  
 
   const client = clientTypes[activeClient];
 
